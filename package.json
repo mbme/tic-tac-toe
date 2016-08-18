@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.dev.config.js --hot --inline --progress"
+    "start": "webpack-dev-server --config ./webpack.dev.config.js --hot --inline --progress",
+    "lint": "eslint src"
   },
   "author": "",
   "license": "ISC",
