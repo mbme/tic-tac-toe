@@ -1,4 +1,5 @@
-import * as CONST from '../constants';
+import { EMPTY_CELL, X_CELL, O_CELL } from '../constants/CellTypes';
+import { MATRIX_SIZE } from '../constants';
 import * as states from '../constants/GameStates';
 
 function countMarkedCells(matrix) {
@@ -6,7 +7,7 @@ function countMarkedCells(matrix) {
 
   matrix.forEach(row => {
     row.forEach(cell => {
-      if (cell !== CONST.EMPTY_CELL) {
+      if (cell !== EMPTY_CELL) {
         markedCells += 1;
       }
     });
@@ -26,7 +27,7 @@ function getTurnType(matrix) {
 }
 
 function hasEmptyCells(matrix) {
-  return countMarkedCells(matrix) < CONST.MATRIX_SIZE * CONST.MATRIX_SIZE;
+  return countMarkedCells(matrix) < MATRIX_SIZE * MATRIX_SIZE;
 }
 
 /**
@@ -36,7 +37,7 @@ function hasEmptyCells(matrix) {
 function checkLine(line) {
   const firstCell = line[0];
 
-  if (firstCell === CONST.EMPTY_CELL) {
+  if (firstCell === EMPTY_CELL) {
     return null;
   }
 
@@ -95,11 +96,11 @@ function getWinner(matrix) {
  */
 export function getGameState({ matrix }) { // eslint-disable-line import/prefer-default-export
   const winner = getWinner(matrix);
-  if (winner === CONST.X_CELL) {
+  if (winner === X_CELL) {
     return states.X_WON;
   }
 
-  if (winner === CONST.O_CELL) {
+  if (winner === O_CELL) {
     return states.O_WON;
   }
 

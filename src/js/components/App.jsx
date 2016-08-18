@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Grid from '../components/Grid';
 import ControlPanel from '../components/ControlPanel';
 import { STATES, X_TURN, O_TURN } from '../constants/GameStates';
-import { X_CELL, O_CELL } from '../constants';
+import { X_CELL, O_CELL } from '../constants/CellTypes';
 
 const App = ({ matrix, onCellMarked, onNewGameClicked, gameState }) => {
   function onClick(row, col) {

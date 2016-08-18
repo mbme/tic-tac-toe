@@ -1,6 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
-import * as CONST from '../constants';
+import { MATRIX_SIZE } from '../constants';
+import { EMPTY_CELL } from '../constants/CellTypes';
 
 // NOTE: matrix is an array of rows
 //       row is an array of elements
@@ -11,10 +12,10 @@ import * as CONST from '../constants';
 function emptyMatrix() {
   const rows = [];
 
-  for (let i = 0; i < CONST.MATRIX_SIZE; i += 1) {
+  for (let i = 0; i < MATRIX_SIZE; i += 1) {
     const row = [];
-    for (let j = 0; j < CONST.MATRIX_SIZE; j += 1) {
-      row.push(CONST.EMPTY_CELL);
+    for (let j = 0; j < MATRIX_SIZE; j += 1) {
+      row.push(EMPTY_CELL);
     }
 
     rows.push(row);
