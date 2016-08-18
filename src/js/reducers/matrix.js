@@ -2,6 +2,12 @@ import * as types from '../constants/ActionTypes';
 
 import * as CONST from '../constants';
 
+// NOTE: matrix is an array of rows
+//       row is an array of elements
+
+/**
+ * Generate empty matrix;
+ */
 function emptyMatrix() {
   const rows = [];
 
@@ -17,10 +23,29 @@ function emptyMatrix() {
   return rows;
 }
 
+/**
+ * Immutable cell update: returns new matrix with updated cell value.
+ */
+function updateCell(matrix, row, col, value) {
+  const oldRow = matrix[row];
+
+  const newRow = [...oldRow.slice(0, col), value, ...oldRow.slice(col + 1)];
+
+  return [
+    ...matrix.slice(0, row),
+    newRow,
+    ...matrix.slice(row + 1),
+  ];
+}
+
 export default function (state = emptyMatrix(), action) {
   switch (action.type) {
-    case types.NEW_GAME:
+    case types.RESET_GRID:
       return emptyMatrix();
+
+    case types.MARK_CELL:
+      return updateCell(state, action.row, action.col, action.turnType);
+
     default:
       return state;
   }
