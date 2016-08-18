@@ -26,14 +26,12 @@ const ControlPanel = ({ gameState, onNewGameClicked }) => {
       throw new Error(`unexpected state ${gameState}`);
   }
 
-  const button = showNewGameBtn
-          ? <button onClick={onNewGameClicked}>NEW GAME</button>
-          : undefined;
-
   return (
     <div className="ControlPanel">
       <h1>{label}</h1>
-      {button}
+      <button onClick={onNewGameClicked} className={showNewGameBtn ? '' : 'hidden'}>
+        NEW GAME
+      </button>
     </div>
   );
 };

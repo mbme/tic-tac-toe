@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TIC-TAC-TOE</title>
     <style>
+      html {
+        height: 100%;
+        text-align: center;
+      }
+
+      body {
+        display: inline-block;
+        margin-top: 10%;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
       table {
         border-collapse: collapse;
       }
@@ -16,11 +27,30 @@
       td {
         width: 100px;
         height: 100px;
+        font-weight: bold;
+        font-size: 28px;
       }
 
-      td.is-empty:hover {
+      td.x-cell {
+        background-color: #a7ffeb;
+      }
+
+      td.o-cell {
+        background-color: #f0f4c3;
+      }
+
+      [data-game-state=in-progress] td.empty-cell:hover {
         cursor: pointer;
         background-color: #8FF3C2;
+      }
+
+      .hidden {
+        visibility: hidden;
+      }
+
+      .ControlPanel button {
+        margin: 15px auto;
+        padding: 5px 10px;
       }
 
     </style>

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Grid from '../components/Grid';
 import ControlPanel from '../components/ControlPanel';
-import { STATES, X_TURN, O_TURN } from '../constants/GameStates';
+import { STATES, FINISHED_STATES, X_TURN, O_TURN } from '../constants/GameStates';
 import { X_CELL, O_CELL } from '../constants/CellTypes';
 
 const App = ({ matrix, onCellMarked, onNewGameClicked, gameState }) => {
@@ -15,8 +15,9 @@ const App = ({ matrix, onCellMarked, onNewGameClicked, gameState }) => {
     }
   }
 
+  const isFinished = FINISHED_STATES.indexOf(gameState) > -1;
   return (
-    <div>
+    <div data-game-state={isFinished ? 'finished' : 'in-progress'}>
       <ControlPanel gameState={gameState} onNewGameClicked={onNewGameClicked} />
 
       <Grid matrix={matrix} onClick={onClick} />

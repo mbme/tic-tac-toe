@@ -7,3 +7,4 @@ export const O_WON = 'O_WON';
 export const DRAW = 'DRAW';
 
 export const STATES = [X_TURN, O_TURN, X_WON, O_WON, DRAW];
+export const FINISHED_STATES = [X_WON, O_WON, DRAW];

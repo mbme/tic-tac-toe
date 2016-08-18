@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { EMPTY_CELL } from '../constants/CellTypes';
+import { X_CELL, O_CELL } from '../constants/CellTypes';
 
 const Grid = ({ matrix, onClick }) => (
   <table>
@@ -10,8 +10,16 @@ const Grid = ({ matrix, onClick }) => (
           <tr key={rowIndex}>
             {
               row.map((cell, colIndex) => {
-                const isEmpty = cell === EMPTY_CELL;
-                const className = isEmpty ? 'is-empty' : '';
+                let isEmpty = false;
+                let className;
+                if (cell === X_CELL) {
+                  className = 'x-cell';
+                } else if (cell === O_CELL) {
+                  className = 'o-cell';
+                } else {
+                  className = 'empty-cell';
+                  isEmpty = true;
+                }
 
                 function clickHandler() {
                   if (isEmpty) {
