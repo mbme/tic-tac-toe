@@ -19,7 +19,7 @@ module.exports = {
   output: {
     path: PATHS.build,
     filename: 'js/[name].js',
-    publicPath: '/',
+    publicPath: './',
   },
   stats: {
     colors: true,
@@ -33,7 +33,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: ['babel'],
         include: PATHS.app,
       },
     ],
@@ -47,15 +47,16 @@ module.exports = {
     // Avoid publishing files when compilation fails
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.NODE_ENV': JSON.stringify('production'),
       __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false')),
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+    }),
   ],
-  devServer: {
-    contentBase: path.resolve(__dirname, './src'),
-    port: 8080,
-    historyApiFallback: true,
-  },
-  devtool: 'eval',
+  devtool: 'source-map',
 };
