@@ -1,25 +1,46 @@
 import React, { PropTypes } from 'react';
 import * as states from '../constants/GameStates';
 
-const ControlPanel = ({ gameState }) => {
+const ControlPanel = ({ gameState, onNewGameClicked }) => {
+  let label;
+  let showNewGameBtn = true;
   switch (gameState) {
     case states.X_TURN:
-      return (<h1>X TURN!</h1>);
+      label = 'X TURN!';
+      showNewGameBtn = false;
+      break;
     case states.O_TURN:
-      return (<h1>O TURN!</h1>);
+      label = 'O TURN!';
+      showNewGameBtn = false;
+      break;
     case states.DRAW:
-      return (<h1>DRAW!</h1>);
+      label = 'DRAW!';
+      break;
     case states.X_WON:
-      return (<h1>X WON!</h1>);
+      label = 'X WON!';
+      break;
     case states.O_WON:
-      return (<h1>O WON!</h1>);
+      label = 'O WON!';
+      break;
     default:
       throw new Error(`unexpected state ${gameState}`);
   }
+
+  const button = showNewGameBtn
+          ? <button onClick={onNewGameClicked}>NEW GAME</button>
+          : undefined;
+
+  return (
+    <div className="ControlPanel">
+      <h1>{label}</h1>
+      {button}
+    </div>
+  );
 };
 
 ControlPanel.propTypes = {
   gameState: PropTypes.oneOf(states.STATES).isRequired,
+  onNewGameClicked: PropTypes.func.isRequired,
 };
 
 export default ControlPanel;

@@ -4,7 +4,7 @@ import ControlPanel from '../components/ControlPanel';
 import { STATES, X_TURN, O_TURN } from '../constants/GameStates';
 import { X_CELL, O_CELL } from '../constants';
 
-const App = ({ matrix, onCellMarked, gameState }) => {
+const App = ({ matrix, onCellMarked, onNewGameClicked, gameState }) => {
   function onClick(row, col) {
     if (gameState === X_TURN) {
       onCellMarked(row, col, X_CELL);
@@ -17,7 +17,7 @@ const App = ({ matrix, onCellMarked, gameState }) => {
 
   return (
     <div>
-      <ControlPanel gameState={gameState} />
+      <ControlPanel gameState={gameState} onNewGameClicked={onNewGameClicked} />
 
       <Grid matrix={matrix} onClick={onClick} />
     </div>
@@ -27,6 +27,7 @@ const App = ({ matrix, onCellMarked, gameState }) => {
 App.propTypes = {
   matrix: PropTypes.array.isRequired,
   onCellMarked: PropTypes.func.isRequired,
+  onNewGameClicked: PropTypes.func.isRequired,
   gameState: PropTypes.oneOf(STATES).isRequired,
 };
 

@@ -90,7 +90,10 @@ function getWinner(matrix) {
   return checkLine(diag1) || checkLine(diag2);
 }
 
-export function getGameState({ matrix }) {
+/**
+ * Calculate current game state based on the grid.
+ */
+export function getGameState({ matrix }) { // eslint-disable-line import/prefer-default-export
   const winner = getWinner(matrix);
   if (winner === CONST.X_CELL) {
     return states.X_WON;
